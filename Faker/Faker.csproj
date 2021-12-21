@@ -8,8 +8,4 @@
         <LangVersion>8</LangVersion>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Folder Include="Types" />
-    </ItemGroup>
-
 </Project>
