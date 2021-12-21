@@ -4,6 +4,6 @@ namespace Faker
 {
     public interface IFaker
     {
-        object Create(Type objectType);
+        T Create<T>();
     }
 }
