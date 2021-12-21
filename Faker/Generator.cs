@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using Generators;
 
 namespace Faker
 {
@@ -10,7 +11,9 @@ namespace Faker
         private String pluginName;
         private Assembly assembly;
         private Dictionary<Type, Func<object>> typeDictionary;
-        
+        private List<Type> cycleList;
+        private Faker faker;
+        private ListGenerator listGenerator;
         public Generator()
         {
             typeDictionary = new Dictionary<Type, Func<object>>();
@@ -38,5 +41,24 @@ namespace Faker
             }
             return dictionary;
         }
+        
+        public object GenerateValue(Type t)
+        {
+            object obj = null;
+            Func<object> generatorFunc = null;
+
+            if (t.IsGenericType)
+            {
+                obj = listGenerator.GenerateList(t.GenericTypeArguments[0], this);
+            }
+            else if (typeDictionary.TryGetValue(t, out generatorFunc))
+                obj = generatorFunc.Invoke();
+            else if (!cycleList.Contains(t))
+            {
+                obj = faker.Create(t);
+            }
+            return obj;
+        }
+        
     }
 }
