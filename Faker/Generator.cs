@@ -59,6 +59,20 @@ namespace Faker
             }
             return obj;
         }
+        public void AddToCycle(Type t)
+        {
+            cycleList.Add(t);
+        }
+
+        public void RemoveFromCycle(Type t)
+        {
+            cycleList.Remove(t);
+        }
+
+        public void SetFaker(Faker faker)
+        {
+            this.faker = faker;
+        }
         
     }
 }
