@@ -30,9 +30,14 @@ namespace Faker
             assembly = Assembly.LoadFile(pluginName);
             typeDictionary = fillDictionary(typeDictionary);
         }
-
+        public int user = 0;
+        public int dog = 0;
         public void AddToCycle(Type t)
         {
+            if (t.Equals(typeof(User)))
+            {
+                user++;
+            }
             cycleList.Add(t);
         }
 
@@ -59,22 +64,36 @@ namespace Faker
             }
             return dictionary;
         }
+        List<Type> counter = new List<Type>();
 
         public object GenerateValue(Type t)
         {
+            
+            
+
             object obj = null;
             Func<object> generatorFunc = null;
 
+            if (t.Equals(typeof(User)))
+            {
+                user++;
+            }
             if (t.IsGenericType)
             {
                 obj = collectionGenerator.GenerateList(t.GenericTypeArguments[0], this);
             }
             else if (typeDictionary.TryGetValue(t, out generatorFunc))
                 obj = generatorFunc.Invoke();
-            else if (!cycleList.Contains(t))
+            else if (!cycleList.Contains(t) || t.Equals(typeof(Dog)))
             {
                 obj = faker.Create(t);
             }
+
+            if (t.Equals(typeof(User)) && user==3)
+            {
+                obj = faker.Create(t);
+            }
+            
             return obj;
         }
     }

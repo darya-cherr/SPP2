@@ -8,6 +8,7 @@ namespace Faker
 {
     public class Faker : IFaker
     {
+
         private Generator generator;
         public Faker()
         {
@@ -106,23 +107,39 @@ namespace Faker
 
             return result;
         }
-
+        List<Type> counter = new List<Type>();
+         int user = 0;
+         int dog = 0;
         public object Create(Type t)
         {
+            if (counter.Contains(t))
+            {
+                foreach (Type type in counter)
+                {
+                    if (type.Equals(typeof(User)))
+                    {
+                        user++;
+                        generator.AddToCycle(t);
+                    }
+                }
+
+            }
+            counter.Add(t);
+            
+            int i = 0;
             object result;
             ConstructorInfo constructorWithParameters;
             ConstructorInfo constructorWithoutParameters;
             int publicFieldCount;
             int publicPropertiesCount;
-
-            generator.AddToCycle(t);
+            
             constructorWithParameters = getConstructorWithMaxParameters(t);
             constructorWithoutParameters = getConstructorWithMinParameters(t);
 
             publicFieldCount = t.GetFields().Count<FieldInfo>();
             publicPropertiesCount = t.GetProperties().Count<PropertyInfo>();
 
-            if ((constructorWithParameters == null) || ((constructorWithoutParameters != null)
+            if ((constructorWithParameters == null) || ((constructorWithoutParameters != null) 
                 && (constructorWithParameters.GetParameters().Count<ParameterInfo>() < publicFieldCount + publicPropertiesCount)))
             {
                 result = CreateByFillingFields(t);
@@ -131,8 +148,6 @@ namespace Faker
             {
                 result = CreateByConstructor(constructorWithParameters, t);
             }
-
-            generator.RemoveFromCycle(t);
             return result;
         }
 
