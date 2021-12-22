@@ -125,7 +125,7 @@ namespace Faker
 
             }
             counter.Add(t);
-            
+            generator.AddToCycle(t);
             int i = 0;
             object result;
             ConstructorInfo constructorWithParameters;
@@ -148,6 +148,7 @@ namespace Faker
             {
                 result = CreateByConstructor(constructorWithParameters, t);
             }
+            generator.RemoveFromCycle(t);
             return result;
         }
 

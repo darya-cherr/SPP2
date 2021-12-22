@@ -88,12 +88,15 @@ namespace Faker
             {
                 obj = faker.Create(t);
             }
+            else if (!cycleList.Contains(t))
+            {
+                obj = faker.Create(t);
+            }
 
             if (t.Equals(typeof(User)) && user==3)
             {
                 obj = faker.Create(t);
             }
-            
             return obj;
         }
     }

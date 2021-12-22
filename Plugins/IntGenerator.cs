@@ -9,12 +9,12 @@ namespace Plugins
         
         public object GenerateValue()
         {
-            return random.Next(Int32.MinValue,Int32.MaxValue);
+            return random.Next(int.MinValue,int.MaxValue);
         }
 
         public Type GetValueType()
         {
-            return typeof(Int32);
+            return typeof(int);
         }
     }
 }
