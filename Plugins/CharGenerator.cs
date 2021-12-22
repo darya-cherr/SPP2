@@ -3,9 +3,9 @@ using Faker;
 
 namespace Plugins
 {
-    public class CharGenerator : IValueGenerator
+     class CharGenerator : IValueGenerator
     {
-        private Random random = new Random();
+        static Random random = new Random();
         private string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
         public object GenerateValue()

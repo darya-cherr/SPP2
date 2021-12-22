@@ -1,11 +1,49 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net5.0": {
+      "Generators/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Interface": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Generators.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Generators.dll": {}
+        }
+      },
+      "Interface/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Interface.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Interface.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Generators/1.0.0": {
+      "type": "project",
+      "path": "../Generators/Generators.csproj",
+      "msbuildProject": "../Generators/Generators.csproj"
+    },
+    "Interface/1.0.0": {
+      "type": "project",
+      "path": "../Interface/Interface.csproj",
+      "msbuildProject": "../Interface/Interface.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net5.0": [
+      "Generators >= 1.0.0",
+      "Interface >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Dasha_2\\.nuget\\packages\\": {},
@@ -38,7 +76,14 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Dasha_2\\RiderProjects\\SPP2\\Generators\\Generators.csproj": {
+              "projectPath": "C:\\Users\\Dasha_2\\RiderProjects\\SPP2\\Generators\\Generators.csproj"
+            },
+            "C:\\Users\\Dasha_2\\RiderProjects\\SPP2\\Interface\\Interface.csproj": {
+              "projectPath": "C:\\Users\\Dasha_2\\RiderProjects\\SPP2\\Interface\\Interface.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

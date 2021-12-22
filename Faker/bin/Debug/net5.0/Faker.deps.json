@@ -7,14 +7,41 @@
   "targets": {
     ".NETCoreApp,Version=v5.0": {
       "Faker/1.0.0": {
+        "dependencies": {
+          "Generators": "1.0.0",
+          "Interface": "1.0.0"
+        },
         "runtime": {
           "Faker.dll": {}
+        }
+      },
+      "Generators/1.0.0": {
+        "dependencies": {
+          "Interface": "1.0.0"
+        },
+        "runtime": {
+          "Generators.dll": {}
+        }
+      },
+      "Interface/1.0.0": {
+        "runtime": {
+          "Interface.dll": {}
         }
       }
     }
   },
   "libraries": {
     "Faker/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Generators/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Interface/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

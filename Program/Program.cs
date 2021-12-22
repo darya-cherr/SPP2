@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Faker
 {
@@ -10,8 +11,9 @@ namespace Faker
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, world!");
-            Console.ReadLine();
+            Faker faker = new Faker();
+            User user = faker.Create<User>();
+            Console.WriteLine(JsonConvert.SerializeObject(user, Formatting.Indented));
         }
     }
 }

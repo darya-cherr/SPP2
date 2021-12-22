@@ -6,18 +6,21 @@ using Generators;
 
 namespace Faker
 {
-    public class Generator
+    class Generator
     {
         private String pluginName;
         private Assembly assembly;
         private Dictionary<Type, Func<object>> typeDictionary;
+        private ListGenerator collectionGenerator;
         private List<Type> cycleList;
         private Faker faker;
-        private ListGenerator listGenerator;
+
         public Generator()
         {
             typeDictionary = new Dictionary<Type, Func<object>>();
-            
+            collectionGenerator = new ListGenerator();
+
+            cycleList = new List<Type>();
             pluginName = "C:\\Users\\Dasha_2\\RiderProjects\\SPP2\\Plugins\\bin\\Debug\\net5.0\\Plugins.dll";
             if (!File.Exists(pluginName))
             {
@@ -27,38 +30,7 @@ namespace Faker
             assembly = Assembly.LoadFile(pluginName);
             typeDictionary = fillDictionary(typeDictionary);
         }
-        
-        private Dictionary<Type, Func<object>> fillDictionary(Dictionary<Type, Func<object>> dictionary)
-        {
-            foreach (var type in assembly.GetTypes())
-            {
-                if (type.GetInterface(typeof(IValueGenerator).ToString()) != null)
-                {
-                    var plugin = assembly.CreateInstance(type.FullName) as IValueGenerator;
-                    if (!dictionary.ContainsKey(plugin.GetValueType()))
-                        dictionary.Add(plugin.GetValueType(), plugin.GenerateValue);
-                }
-            }
-            return dictionary;
-        }
-        
-        public object GenerateValue(Type t)
-        {
-            object obj = null;
-            Func<object> generatorFunc = null;
 
-            if (t.IsGenericType)
-            {
-                obj = listGenerator.GenerateList(t.GenericTypeArguments[0], this);
-            }
-            else if (typeDictionary.TryGetValue(t, out generatorFunc))
-                obj = generatorFunc.Invoke();
-            else if (!cycleList.Contains(t))
-            {
-                obj = faker.Create(t);
-            }
-            return obj;
-        }
         public void AddToCycle(Type t)
         {
             cycleList.Add(t);
@@ -73,6 +45,37 @@ namespace Faker
         {
             this.faker = faker;
         }
-        
+
+        private Dictionary<Type, Func<object>> fillDictionary(Dictionary<Type, Func<object>> dictionary)
+        {
+            foreach (var type in assembly.GetTypes())
+            {
+                if (type.GetInterface(typeof(IValueGenerator).ToString()) != null)
+                {
+                    var plugin = assembly.CreateInstance(type.FullName) as IValueGenerator;
+                    if (!dictionary.ContainsKey(plugin.GetValueType()))
+                        dictionary.Add(plugin.GetValueType(), plugin.GenerateValue);
+                }
+            }
+            return dictionary;
+        }
+
+        public object GenerateValue(Type t)
+        {
+            object obj = null;
+            Func<object> generatorFunc = null;
+
+            if (t.IsGenericType)
+            {
+                obj = collectionGenerator.GenerateList(t.GenericTypeArguments[0], this);
+            }
+            else if (typeDictionary.TryGetValue(t, out generatorFunc))
+                obj = generatorFunc.Invoke();
+            else if (!cycleList.Contains(t))
+            {
+                obj = faker.Create(t);
+            }
+            return obj;
+        }
     }
 }

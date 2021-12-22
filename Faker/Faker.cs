@@ -1,18 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Plugins;
 
 namespace Faker
 {
     public class Faker : IFaker
     {
         private Generator generator;
-        
         public Faker()
         {
             generator = new Generator();
         }
-        
+
         private ConstructorInfo getConstructorWithMaxParameters(Type type)
         {
             ConstructorInfo[] constructors = type.GetConstructors();
@@ -134,10 +135,11 @@ namespace Faker
             generator.RemoveFromCycle(t);
             return result;
         }
-        
+
         public T Create<T>()
         {
             Type t = typeof(T);
+            generator.SetFaker(this);
             return (T)Create(t);
         }
     }

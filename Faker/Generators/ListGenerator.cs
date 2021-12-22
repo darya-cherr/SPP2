@@ -5,7 +5,7 @@ using Faker;
 
 namespace Generators
 {
-    public class ListGenerator
+    class ListGenerator
     {
         private Random random;
         
