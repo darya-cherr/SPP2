@@ -34,10 +34,6 @@ namespace Faker
         public int dog = 0;
         public void AddToCycle(Type t)
         {
-            if (t.Equals(typeof(User)))
-            {
-                user++;
-            }
             cycleList.Add(t);
         }
 
@@ -68,9 +64,6 @@ namespace Faker
 
         public object GenerateValue(Type t)
         {
-            
-            
-
             object obj = null;
             Func<object> generatorFunc = null;
 

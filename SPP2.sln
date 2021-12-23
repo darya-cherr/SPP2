@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugins", "Plugins\Plugins.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface", "Interface\Interface.csproj", "{76EEE6EB-5FA1-4E5C-A237-7A1E5E52F938}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Program", "Program\Program.csproj", "{43AC3D2C-80FC-4944-9628-489CC8CD976A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginTest", "PluginTest\PluginTest.csproj", "{541C6B0D-CD40-4ED4-A8DC-4F76F2C154D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,9 +26,9 @@ Global
 		{76EEE6EB-5FA1-4E5C-A237-7A1E5E52F938}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76EEE6EB-5FA1-4E5C-A237-7A1E5E52F938}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76EEE6EB-5FA1-4E5C-A237-7A1E5E52F938}.Release|Any CPU.Build.0 = Release|Any CPU
-		{43AC3D2C-80FC-4944-9628-489CC8CD976A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43AC3D2C-80FC-4944-9628-489CC8CD976A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43AC3D2C-80FC-4944-9628-489CC8CD976A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43AC3D2C-80FC-4944-9628-489CC8CD976A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{541C6B0D-CD40-4ED4-A8DC-4F76F2C154D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{541C6B0D-CD40-4ED4-A8DC-4F76F2C154D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{541C6B0D-CD40-4ED4-A8DC-4F76F2C154D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{541C6B0D-CD40-4ED4-A8DC-4F76F2C154D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

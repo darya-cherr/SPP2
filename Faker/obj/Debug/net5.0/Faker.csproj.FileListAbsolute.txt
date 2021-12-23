@@ -15,3 +15,8 @@ C:\Users\Dasha_2\RiderProjects\SPP2\Faker\bin\Debug\net5.0\Interface.dll
 C:\Users\Dasha_2\RiderProjects\SPP2\Faker\bin\Debug\net5.0\Interface.pdb
 C:\Users\Dasha_2\RiderProjects\SPP2\Faker\bin\Debug\net5.0\Generators.dll
 C:\Users\Dasha_2\RiderProjects\SPP2\Faker\bin\Debug\net5.0\Generators.pdb
+C:\Users\Dasha_2\RiderProjects\SPP2\Faker\bin\Debug\net5.0\Faker.exe
+C:\Users\Dasha_2\RiderProjects\SPP2\Faker\bin\Debug\net5.0\Faker.runtimeconfig.json
+C:\Users\Dasha_2\RiderProjects\SPP2\Faker\bin\Debug\net5.0\Faker.runtimeconfig.dev.json
+C:\Users\Dasha_2\RiderProjects\SPP2\Faker\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\Dasha_2\RiderProjects\SPP2\Faker\obj\Debug\net5.0\Faker.genruntimeconfig.cache

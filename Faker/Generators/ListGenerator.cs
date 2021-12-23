@@ -17,7 +17,7 @@ namespace Generators
         public object GenerateList(Type type, Generator generator)
         {
             object list = Activator.CreateInstance(typeof(List<>).MakeGenericType(type));
-            int count = (Byte)random.Next();
+            int count = (Byte)random.Next(1,17);
 
             for (int i = 0; i < count; i++)
             {
