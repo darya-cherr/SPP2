@@ -107,14 +107,14 @@ namespace Faker
                     {
                         count2++;
                     }
-
-                    if (count1 == k && count2 == k)
+                    if (count1 > k+2 || count2 > k+2 )
                     {
+                        counter.Clear();
                         break;
                     }
                 }
 
-                if (count1 < k && t == typeof(User))
+                if ((count1 < k || count2 > 2*k ) && t == typeof(User))
                 {
                     count1 = 0;
                     count2 = 0;
