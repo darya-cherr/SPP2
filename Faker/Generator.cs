@@ -41,6 +41,11 @@ namespace Faker
         {
             cycleList.Remove(t);
         }
+        
+        public bool _Contains(Type t)
+        {
+            return cycleList.Contains(t);
+        }
 
         public void SetFaker(Faker faker)
         {
@@ -60,35 +65,64 @@ namespace Faker
             }
             return dictionary;
         }
+        
+        
         List<Type> counter = new List<Type>();
-
+        public int count1 = 0;
+        private int flag = 0;
+        public int k = 4;
+        private int j = 0;
+        public int count2 = 0;
         public object GenerateValue(Type t)
         {
+            if (t == typeof(User) || t == typeof(Dog))
+            {
+                counter.Add(t);
+            }
+            
             object obj = null;
             Func<object> generatorFunc = null;
-
-            if (t.Equals(typeof(User)))
-            {
-                user++;
-            }
+            
             if (t.IsGenericType)
             {
+                
                 obj = collectionGenerator.GenerateList(t.GenericTypeArguments[0], this);
             }
             else if (typeDictionary.TryGetValue(t, out generatorFunc))
                 obj = generatorFunc.Invoke();
-            else if (!cycleList.Contains(t) || t.Equals(typeof(Dog)))
+             
+            else if (!cycleList.Contains(t) || t == typeof(Dog)|| t == typeof(Profile))
             {
                 obj = faker.Create(t);
             }
-            else if (!cycleList.Contains(t))
-            {
-                obj = faker.Create(t);
-            }
+            if (cycleList.Contains(t)){
+                foreach (Type ty in counter)
+                {
+                    if (ty == typeof(User))
+                    {
+                        count1++;
+                    }
 
-            if (t.Equals(typeof(User)) && user==3)
-            {
-                obj = faker.Create(t);
+                    if (ty == typeof(Dog))
+                    {
+                        count2++;
+                    }
+
+                    if (count1 == k && count2 == k)
+                    {
+                        break;
+                    }
+                }
+
+                if (count1 < k && t == typeof(User))
+                {
+                    count1 = 0;
+                    count2 = 0;
+                    obj = faker.Create(t);
+                    return obj;
+                }
+                count1 = 0;
+                count2 = 0;
             }
             return obj;
         }
