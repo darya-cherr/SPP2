@@ -107,26 +107,14 @@ namespace Faker
 
             return result;
         }
-        List<Type> counter = new List<Type>();
-         int user = 0;
-         int dog = 0;
+
+        
+        private int k = 5;
+        private int i = 0;
         public object Create(Type t)
         {
-            if (counter.Contains(t))
-            {
-                foreach (Type type in counter)
-                {
-                    if (type.Equals(typeof(User)))
-                    {
-                        user++;
-                        generator.AddToCycle(t);
-                    }
-                }
-
-            }
-            counter.Add(t);
             generator.AddToCycle(t);
-            int i = 0;
+            
             object result;
             ConstructorInfo constructorWithParameters;
             ConstructorInfo constructorWithoutParameters;

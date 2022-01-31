@@ -68,5 +68,29 @@ namespace PluginTest
             }
         }
         
-    }
+        [Test]
+        public void Counter()
+        {
+            User user = faker.Create<User>();
+            object t = user;
+            int counter = 0;
+            while (t != null)
+            {
+                if (t.GetType() == typeof(User))
+                {
+                    t = ((User)t).dogs[0];
+                }
+                else
+                {
+                    if (t.GetType() == typeof(Dog))
+                    {
+                        t = ((Dog)t).owner;
+                    }
+                }
+                counter++;
+            }
+            Assert.AreEqual(counter,9);
+        }
+
+        }
 }
